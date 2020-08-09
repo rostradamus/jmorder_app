@@ -1,0 +1,69 @@
+import 'package:equatable/equatable.dart';
+
+import 'package:jmorder_app/models/auth.dart';
+import 'package:jmorder_app/services/exceptions/auth_service_exception.dart';
+import 'package:meta/meta.dart';
+
+abstract class AuthState extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
+class AuthInitialState extends AuthState {}
+
+class AuthRequestState extends AuthState {}
+
+class RefreshTokenSuccessState extends AuthState {}
+
+class RefreshTokenFailureState extends AuthState {}
+
+class LoginWaitingState extends AuthState {}
+
+class LoginSuccessState extends AuthState {
+  final Auth auth;
+
+  LoginSuccessState({@required this.auth});
+
+  @override
+  List<Object> get props => [auth];
+}
+
+class LoginFailureState extends AuthState {
+  final AuthServiceException error;
+
+  LoginFailureState({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class LogoutSuccessState extends AuthState {}
+
+class LogoutFailureState extends AuthState {
+  final AuthServiceException error;
+
+  LogoutFailureState({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class SignUpSuccessState extends AuthState {}
+
+class SignUpFailureState extends AuthState {
+  final AuthServiceException error;
+
+  SignUpFailureState({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+
+class UnexpectedFailureState extends AuthState {
+  final AuthServiceException error;
+
+  UnexpectedFailureState({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
