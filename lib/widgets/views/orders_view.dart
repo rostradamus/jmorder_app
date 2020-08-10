@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PlansView extends StatelessWidget {
+class OrdersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('Plans'),
+        child: Text('Orders'),
       ),
     );
   }

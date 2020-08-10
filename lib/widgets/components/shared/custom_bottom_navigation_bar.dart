@@ -15,20 +15,20 @@ class CustomBottomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text("홈"),
+          icon: Icon(Icons.people),
+          title: Text("스태프"),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          title: Text("친구"),
+          icon: Icon(Icons.chat_bubble_outline),
+          title: Text("공지"),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_cart),
           title: Text("발주"),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.history),
-          title: Text("기록"),
+          icon: Icon(Icons.business),
+          title: Text("거래처"),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

@@ -1,6 +1,8 @@
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_bloc.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_event.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_state.dart';
+import 'package:jmorder_app/bloc/clients/clients_bloc.dart';
+import 'package:jmorder_app/bloc/clients/clients_state.dart';
 import 'package:jmorder_app/widgets/components/shared/app_bar_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,9 +13,9 @@ import 'package:jmorder_app/bloc/auth/auth_state.dart';
 import 'package:jmorder_app/widgets/components/shared/custom_bottom_navigation_bar.dart';
 import 'package:jmorder_app/widgets/views/friends_view.dart';
 import 'package:jmorder_app/widgets/views/home_view.dart';
-import 'package:jmorder_app/widgets/views/plans_view.dart';
+import 'package:jmorder_app/widgets/views/orders_view.dart';
 import 'package:jmorder_app/widgets/views/settings_view.dart';
-import 'package:jmorder_app/widgets/views/tips_view.dart';
+import 'package:jmorder_app/widgets/views/clients_view.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -63,8 +65,12 @@ class MainPage extends StatelessWidget {
                 }
                 if (state is HomeViewState) return HomeView();
                 if (state is FriendsViewState) return FriendsView();
-                if (state is PlanViewState) return PlansView();
-                if (state is TipsViewState) return TipsView();
+                if (state is PlanViewState) return OrdersView();
+                if (state is ClientsViewState)
+                  return BlocProvider<ClientsBloc>(
+                    create: (context) => ClientsBloc(ClientsLoadingState()),
+                    child: ClientsView(),
+                  );
                 if (state is SettingsViewState) return SettingsView();
                 return Container();
               },
