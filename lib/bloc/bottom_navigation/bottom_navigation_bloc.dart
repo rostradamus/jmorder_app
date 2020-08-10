@@ -24,12 +24,12 @@ class BottomNavigationBloc
       switch (this.currentIndex) {
         case 0:
           {
-            yield HomeViewState();
+            yield FriendsViewState();
             break;
           }
         case 1:
           {
-            yield FriendsViewState();
+            yield HomeViewState();
             break;
           }
         case 2:
@@ -39,7 +39,7 @@ class BottomNavigationBloc
           }
         case 3:
           {
-            yield TipsViewState();
+            yield ClientsViewState();
             break;
           }
         case 4:

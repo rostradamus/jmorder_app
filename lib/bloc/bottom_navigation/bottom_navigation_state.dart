@@ -22,6 +22,6 @@ class FriendsViewState extends BottomNavigationState {}
 
 class PlanViewState extends BottomNavigationState {}
 
-class TipsViewState extends BottomNavigationState {}
+class ClientsViewState extends BottomNavigationState {}
 
 class SettingsViewState extends BottomNavigationState {}
