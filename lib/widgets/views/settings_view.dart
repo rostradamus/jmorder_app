@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:jmorder_app/bloc/auth/auth_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_event.dart';
+import 'package:jmorder_app/services/auth_service.dart';
 
 class SettingsView extends StatelessWidget {
   @override
@@ -21,7 +23,7 @@ class SettingsView extends StatelessWidget {
             child: ListTile(
               onTap: () => {},
               title: Text(
-                "Ro Lee",
+                GetIt.I.get<AuthService>().auth.user.fullName,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,

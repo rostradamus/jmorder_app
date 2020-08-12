@@ -1,16 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'client.dart';
+part of 'order.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Client _$ClientFromJson(Map<String, dynamic> json) {
-  return Client(
+Order _$OrderFromJson(Map<String, dynamic> json) {
+  $checkKeys(json, requiredKeys: const ['id']);
+  return Order(
     id: json['id'] as int,
-    name: json['name'] as String,
-    phone: json['phone'] as String,
+    user: json['user'] == null
+        ? null
+        : User.fromJson(json['user'] as Map<String, dynamic>),
+    client: json['client'] == null
+        ? null
+        : Client.fromJson(json['client'] as Map<String, dynamic>),
     createdAt: json['createdAt'] == null
         ? null
         : DateTime.parse(json['createdAt'] as String),
@@ -20,10 +25,10 @@ Client _$ClientFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
+Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'phone': instance.phone,
+      'user': instance.user?.toJson(),
+      'client': instance.client?.toJson(),
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };

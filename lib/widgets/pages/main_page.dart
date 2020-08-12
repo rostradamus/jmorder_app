@@ -1,3 +1,5 @@
+import 'package:jmorder_app/bloc/auth/orders/orders_bloc.dart';
+import 'package:jmorder_app/bloc/auth/orders/orders_state.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_bloc.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_event.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_state.dart';
@@ -65,7 +67,11 @@ class MainPage extends StatelessWidget {
                 }
                 if (state is HomeViewState) return HomeView();
                 if (state is FriendsViewState) return FriendsView();
-                if (state is PlanViewState) return OrdersView();
+                if (state is PlanViewState)
+                  return BlocProvider<OrdersBloc>(
+                    create: (context) => OrdersBloc(OrdersLoadingState()),
+                    child: OrdersView(),
+                  );
                 if (state is ClientsViewState)
                   return BlocProvider<ClientsBloc>(
                     create: (context) => ClientsBloc(ClientsLoadingState()),

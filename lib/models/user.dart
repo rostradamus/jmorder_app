@@ -1,5 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 part 'user.g.dart';
 
+@JsonSerializable()
 class User {
   int id;
   String email;
@@ -7,7 +10,7 @@ class User {
   String firstName;
   String lastName;
 
-  String get fullName => "$firstName $lastName";
+  String get fullName => "$lastName$firstName";
 
   User({this.id, this.email, this.phone, this.firstName, this.lastName});
 
