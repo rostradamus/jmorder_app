@@ -6,7 +6,6 @@ part 'order.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Order {
-  @JsonKey(required: true)
   int id;
   User user;
   Client client;

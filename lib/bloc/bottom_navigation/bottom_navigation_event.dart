@@ -6,7 +6,7 @@ abstract class BottomNavigationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class MainPageLoaded extends BottomNavigationEvent {}
+class MainPageCreated extends BottomNavigationEvent {}
 
 class PageTapped extends BottomNavigationEvent {
   final int index;

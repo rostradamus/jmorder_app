@@ -7,7 +7,6 @@ part of 'order.dart';
 // **************************************************************************
 
 Order _$OrderFromJson(Map<String, dynamic> json) {
-  $checkKeys(json, requiredKeys: const ['id']);
   return Order(
     id: json['id'] as int,
     user: json['user'] == null

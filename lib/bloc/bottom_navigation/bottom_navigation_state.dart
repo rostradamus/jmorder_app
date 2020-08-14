@@ -16,11 +16,11 @@ class CurrentIndexChanged extends BottomNavigationState {
 
 class ViewLoading extends BottomNavigationState {}
 
-class HomeViewState extends BottomNavigationState {}
+class StaffsViewState extends BottomNavigationState {}
 
-class FriendsViewState extends BottomNavigationState {}
+class ChatViewState extends BottomNavigationState {}
 
-class PlanViewState extends BottomNavigationState {}
+class OrdersViewState extends BottomNavigationState {}
 
 class ClientsViewState extends BottomNavigationState {}
 

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:jmorder_app/bloc/auth/orders/orders_event.dart';
-import 'package:jmorder_app/bloc/auth/orders/orders_state.dart';
+import 'package:jmorder_app/bloc/orders/orders_event.dart';
+import 'package:jmorder_app/bloc/orders/orders_state.dart';
 import 'package:jmorder_app/models/order.dart';
 import 'package:jmorder_app/services/orders_service.dart';
 

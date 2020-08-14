@@ -20,5 +20,11 @@ class ClientsBloc extends Bloc<ClientsEvent, ClientsState> {
       List<Client> clients = await _clientsService.fetchClients();
       yield ClientsLoadedState(clients: clients);
     }
+    if (event is ClientsCreated) {
+      yield ClientsLoadingState();
+      List<Client> clients = await _clientsService.createClient(
+          name: event.name, phone: event.phone);
+      yield ClientsLoadedState(clients: clients);
+    }
   }
 }

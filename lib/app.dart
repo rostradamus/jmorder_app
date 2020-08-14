@@ -6,9 +6,10 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_state.dart';
-import 'package:jmorder_app/widgets/pages/main_page.dart';
+import 'package:jmorder_app/bloc/clients/clients_bloc.dart';
+import 'package:jmorder_app/bloc/clients/clients_state.dart';
+import 'package:jmorder_app/utils/router.dart';
 import 'package:jmorder_app/widgets/pages/auth_page.dart';
-import 'package:jmorder_app/widgets/pages/sign_up_page.dart';
 
 import 'bloc/auth/auth_bloc.dart';
 
@@ -33,10 +34,19 @@ class AppState extends State<App> {
                 create: (BuildContext context) =>
                     BottomNavigationBloc(ViewLoading()),
               ),
+              BlocProvider<ClientsBloc>(
+                create: (context) => ClientsBloc(ClientsLoadingState()),
+              )
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: '/login',
+              initialRoute: AuthPage.routeName,
+              theme: new ThemeData(
+                primarySwatch: Colors.pink,
+                primaryColor: const Color(0xFFFF0844),
+                accentColor: const Color(0xFFFF0844),
+                canvasColor: const Color(0xFFfafafa),
+              ),
               localizationsDelegates: [
                 FlutterI18nDelegate(
                   translationLoader: FileTranslationLoader(
@@ -49,25 +59,14 @@ class AppState extends State<App> {
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
               ],
-              routes: {
-                '/': (context) => MainPage(),
-                '/login': (context) => AuthPage(),
-                '/signup': (context) => SignUpPage(),
-              },
+              onGenerateRoute: Router.generateRoute,
             ),
           );
         }
         return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: <Color>[Color(0xFFF47400), Color(0xFFF0EB09)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
           child: Center(
             child: CircularProgressIndicator(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.transparent,
             ),
           ),
         );

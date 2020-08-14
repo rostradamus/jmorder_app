@@ -4,7 +4,8 @@ import 'package:jmorder_app/bloc/auth/auth_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_state.dart';
 import 'package:jmorder_app/models/user.dart';
 
-class HomeView extends StatelessWidget {
+class ChatView extends StatelessWidget {
+  static const int viewIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
