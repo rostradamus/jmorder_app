@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:jmorder_app/widgets/pages/auth_page.dart';
 
 class GlobalExceptionUIHandler {
   static void showUnexpectedErrorDialog(BuildContext context) {
@@ -44,7 +45,7 @@ class GlobalExceptionUIHandler {
               child: Text("Close"),
               onPressed: () {
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/login', (r) => false);
+                    .pushNamedAndRemoveUntil(AuthPage.routeName, (r) => false);
               },
             ),
           ],

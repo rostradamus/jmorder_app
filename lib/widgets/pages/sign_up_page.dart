@@ -1,15 +1,14 @@
-import 'package:jmorder_app/widgets/components/shared/app_bar_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:jmorder_app/widgets/components/auth/sign_up_form.dart';
 
 class SignUpPage extends StatelessWidget {
+  static const String routeName = '/signup';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        gradient: AppBarGradient(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFF0844),
         title: Text(
           FlutterI18n.translate(
             context,
@@ -17,17 +16,30 @@ class SignUpPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: SignUpForm(),
-        ),
+      backgroundColor: Colors.transparent,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[Color(0xFFFF0844), Color(0xFFFFB199)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: SignUpForm(),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

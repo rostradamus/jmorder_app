@@ -1,5 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
 part 'client.g.dart';
 
+@JsonSerializable()
 class Client {
   int id;
   String name;

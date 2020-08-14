@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:jmorder_app/bloc/auth/auth_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_event.dart';
+import 'package:jmorder_app/services/auth_service.dart';
+import 'package:jmorder_app/widgets/pages/auth_page.dart';
 
 class SettingsView extends StatelessWidget {
+  static const int viewIndex = 4;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -17,11 +21,11 @@ class SettingsView extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
             ),
             margin: const EdgeInsets.all(8.0),
-            color: Colors.deepOrange,
+            color: Theme.of(context).primaryColor,
             child: ListTile(
               onTap: () => {},
               title: Text(
-                "Ro Lee",
+                GetIt.I.get<AuthService>().auth?.user?.fullName ?? "",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -52,7 +56,7 @@ class SettingsView extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.lock_outline,
-                    color: Colors.deepOrange,
+                    color: Theme.of(context).primaryColor,
                   ),
                   title: Text("비밀번호 변경"),
                   onTap: () => {},
@@ -60,7 +64,7 @@ class SettingsView extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.language,
-                    color: Colors.deepOrange,
+                    color: Theme.of(context).primaryColor,
                   ),
                   title: Text("언어 변경"),
                   onTap: () => {},
@@ -68,7 +72,7 @@ class SettingsView extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.report,
-                    color: Colors.deepOrange,
+                    color: Theme.of(context).primaryColor,
                   ),
                   title: Text("문의하기"),
                   onTap: () => {},
@@ -76,13 +80,13 @@ class SettingsView extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.power_settings_new,
-                    color: Colors.deepOrange,
+                    color: Theme.of(context).primaryColor,
                   ),
                   title: Text("로그아웃"),
                   onTap: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        AuthPage.routeName, (r) => false);
                     BlocProvider.of<AuthBloc>(context).add(LogoutSubmitted());
-                    Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/', (r) => false);
                   },
                 ),
               ],

@@ -3,10 +3,33 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:jmorder_app/bloc/auth/auth_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_event.dart';
+import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_bloc.dart';
+import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_event.dart';
+import 'package:jmorder_app/widgets/pages/sign_up_page.dart';
 
 class LoginForm extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+
+  void _fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  void _submitLoginForm(context) async {
+    BlocProvider.of<AuthBloc>(context).add(
+      LoginSubmitted(
+        email: _emailController.text,
+        password: _passwordController.text,
+      ),
+    );
+    _emailController.clear();
+    _passwordController.clear();
+    BlocProvider.of<BottomNavigationBloc>(context).add(PageTapped(index: 0));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +48,7 @@ class LoginForm extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(2.0),
+                  padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: Colors.grey[100]),
@@ -34,14 +57,17 @@ class LoginForm extends StatelessWidget {
                   child: TextFormField(
                     key: ValueKey("text"),
                     controller: _emailController,
+                    focusNode: _emailFocus,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "이메일",
                     ),
+                    onFieldSubmitted: (value) =>
+                        _fieldFocusChange(context, _emailFocus, _passwordFocus),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -64,12 +90,14 @@ class LoginForm extends StatelessWidget {
                   child: TextFormField(
                     key: ValueKey("text"),
                     controller: _passwordController,
-                    textInputAction: TextInputAction.send,
+                    focusNode: _passwordFocus,
+                    textInputAction: TextInputAction.go,
                     obscureText: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "비밀번호",
                     ),
+                    onFieldSubmitted: (value) => _submitLoginForm(context),
                   ),
                 )
               ],
@@ -81,16 +109,7 @@ class LoginForm extends StatelessWidget {
           Container(
             height: 50.0,
             child: RaisedButton(
-              onPressed: () async {
-                BlocProvider.of<AuthBloc>(context).add(
-                  LoginSubmitted(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  ),
-                );
-                _emailController.clear();
-                _passwordController.clear();
-              },
+              onPressed: () => _submitLoginForm(context),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -108,7 +127,8 @@ class LoginForm extends StatelessWidget {
           Container(
             height: 50.0,
             child: RaisedButton(
-              onPressed: () => Navigator.of(context).pushNamed('/signup'),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(SignUpPage.routeName),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),

@@ -13,8 +13,8 @@ class BottomNavigationBloc
   Stream<BottomNavigationState> mapEventToState(
     BottomNavigationEvent event,
   ) async* {
-    if (event is MainPageLoaded) {
-      this.add(PageTapped(index: this.currentIndex));
+    if (event is MainPageCreated) {
+      this.add(PageTapped(index: 0));
     }
     if (event is PageTapped) {
       this.currentIndex = event.index;
@@ -24,17 +24,17 @@ class BottomNavigationBloc
       switch (this.currentIndex) {
         case 0:
           {
-            yield FriendsViewState();
+            yield StaffsViewState();
             break;
           }
         case 1:
           {
-            yield HomeViewState();
+            yield ChatViewState();
             break;
           }
         case 2:
           {
-            yield PlanViewState();
+            yield OrdersViewState();
             break;
           }
         case 3:

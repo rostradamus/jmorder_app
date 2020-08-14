@@ -3,7 +3,7 @@ import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_event.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class MainPageBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -20,7 +20,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.chat_bubble_outline),
-          title: Text("공지"),
+          title: Text("톡"),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shopping_cart),
