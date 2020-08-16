@@ -16,3 +16,9 @@ class ClientsLoadedState extends ClientsState {
   @override
   List<Object> get props => [clients];
 }
+
+class ClientAddedState extends ClientsState {
+  final Client client;
+
+  ClientAddedState({@required this.client});
+}
