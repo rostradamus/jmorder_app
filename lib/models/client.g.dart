@@ -17,13 +17,28 @@ Client _$ClientFromJson(Map<String, dynamic> json) {
     updatedAt: json['updatedAt'] == null
         ? null
         : DateTime.parse(json['updatedAt'] as String),
+    items: (json['items'] as List)
+            ?.map((e) =>
+                e == null ? null : Item.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        [],
   );
 }
 
-Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'phone': instance.phone,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$ClientToJson(Client instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('name', instance.name);
+  writeNotNull('phone', instance.phone);
+  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
+  writeNotNull('updatedAt', instance.updatedAt?.toIso8601String());
+  writeNotNull('items', instance.items);
+  return val;
+}

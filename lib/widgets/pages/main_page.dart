@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_bloc.dart';
 import 'package:jmorder_app/bloc/auth/auth_state.dart';
+import 'package:jmorder_app/widgets/components/client/basic_info_form_dialog.dart';
 import 'package:jmorder_app/widgets/components/main/main_page_bottom_navigation_bar.dart';
-import 'package:jmorder_app/widgets/pages/client/add_client_page.dart';
 import 'package:jmorder_app/widgets/pages/order/add_order_page.dart';
 import 'package:jmorder_app/widgets/views/staffs_view.dart';
 import 'package:jmorder_app/widgets/views/chat_view.dart';
@@ -52,8 +52,10 @@ class MainPage extends StatelessWidget {
           appBarActions = [
             IconButton(
               icon: Icon(Icons.add),
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AddClientPage.routeName),
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => BasicInfoFormDialog(),
+              ),
             ),
           ];
         }

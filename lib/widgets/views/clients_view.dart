@@ -7,7 +7,7 @@ import 'package:jmorder_app/bloc/clients/clients_event.dart';
 import 'package:jmorder_app/bloc/clients/clients_state.dart';
 import 'package:jmorder_app/models/client.dart';
 import 'package:jmorder_app/services/clients_service.dart';
-import 'package:jmorder_app/widgets/pages/client/edit_client_page.dart';
+import 'package:jmorder_app/widgets/pages/client/client_detail_page.dart';
 
 class ClientsView extends StatelessWidget {
   static const int viewIndex = 3;
@@ -17,7 +17,16 @@ class ClientsView extends StatelessWidget {
     return Container(
       child: Stack(
         children: <Widget>[
-          BlocBuilder<ClientsBloc, ClientsState>(
+          BlocConsumer<ClientsBloc, ClientsState>(
+            listener: (context, state) {
+              if (state is ClientAddedState) {
+                Navigator.pushNamed(
+                  context,
+                  ClientDetailPage.routeName,
+                  arguments: state.client,
+                );
+              }
+            },
             builder: (context, state) {
               if (state is ClientsLoadedState) {
                 return ListView.builder(
@@ -81,11 +90,14 @@ class ClientsView extends StatelessWidget {
                             ) ??
                             false,
                         child: ListTile(
-                          onTap: () {
+                          onTap: () async {
+                            Client openClient = await GetIt.I
+                                .get<ClientsService>()
+                                .fetchClientById(client.id);
                             Navigator.pushNamed(
                               context,
-                              EditClientPage.routeName,
-                              arguments: client,
+                              ClientDetailPage.routeName,
+                              arguments: openClient,
                             );
                           },
                           onLongPress: () {
