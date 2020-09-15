@@ -18,6 +18,7 @@ class ApiService {
       _client.options.baseUrl = "http://10.0.2.2:3000/api";
     else if (Platform.isIOS)
       _client.options.baseUrl = "http://localhost:3000/api";
+    // _client.options.baseUrl = "http://192.168.123.108:3000/api";
     else
       throw UnsupportedOSException(Platform.operatingSystem);
 

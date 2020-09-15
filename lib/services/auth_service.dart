@@ -46,7 +46,7 @@ class AuthService {
       final storage = new FlutterSecureStorage();
       String jwt = await storage.read(key: "jwt");
       _auth = Auth(token: jwt, type: "Bearer");
-      var response = await _apiService.getClient().post('/auth/refresh_token');
+      var response = await _apiService.getClient().post('/auth/refresh-token');
       _auth = Auth.fromJson(response.data);
       storage.write(key: "jwt", value: _auth.token);
     } on DioError catch (e) {

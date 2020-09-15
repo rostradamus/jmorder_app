@@ -3,7 +3,7 @@ import 'package:jmorder_app/models/user.dart';
 
 part 'auth.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Auth {
   String token;
   String type;

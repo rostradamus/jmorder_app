@@ -23,5 +23,5 @@ Map<String, dynamic> _$AuthToJson(Auth instance) => <String, dynamic>{
       'type': instance.type,
       'email': instance.email,
       'id': instance.id,
-      'user': instance.user,
+      'user': instance.user?.toJson(),
     };

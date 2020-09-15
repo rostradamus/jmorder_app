@@ -7,11 +7,28 @@ import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_bloc.dart';
 import 'package:jmorder_app/bloc/bottom_navigation/bottom_navigation_event.dart';
 import 'package:jmorder_app/widgets/pages/sign_up_page.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final FocusNode _emailFocus = FocusNode();
+
   final FocusNode _passwordFocus = FocusNode();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocus.dispose();
+    _passwordFocus.dispose();
+    super.dispose();
+  }
 
   void _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
