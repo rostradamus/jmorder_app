@@ -140,10 +140,32 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 50.0,
+            child: RaisedButton(
+              onPressed: () => _submitLoginForm(context),
+              color: Theme.of(context).primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "로그인",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
           SizedBox(height: 10),
           Container(
             height: 50.0,
             child: RaisedButton(
+              color: Theme.of(context).primaryColor,
               onPressed: () =>
                   Navigator.of(context).pushNamed(SignUpPage.routeName),
               shape: RoundedRectangleBorder(

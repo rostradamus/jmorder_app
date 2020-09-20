@@ -35,7 +35,7 @@ class OrdersService {
   Future<Order> createOrder(Order order) async {
     try {
       var response = await _apiService.getClient().post('/orders', data: {
-        "user": GetIt.I.get<AuthService>().auth.id,
+        "user": GetIt.I.get<AuthService>().profile.id,
         "client": order.client.id,
       });
       this.orders.insert(0, Order.fromJson(response.data));

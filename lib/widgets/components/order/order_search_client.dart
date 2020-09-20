@@ -94,7 +94,7 @@ class OrderSearchClient extends SearchDelegate {
               // close(context, clients[index]);
               Order order = await GetIt.I.get<OrdersService>().createOrder(
                     Order(
-                      user: GetIt.I.get<AuthService>().auth.user,
+                      user: GetIt.I.get<AuthService>().profile.toUser(),
                       client: clients[index],
                     ),
                   );
